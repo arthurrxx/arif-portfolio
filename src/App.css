@@ -1,0 +1,376 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    "Plus Jakarta Sans",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.08),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255, 189, 68, 0.12),
+      transparent 42%
+    ),
+    linear-gradient(135deg, #faf8fa 0%, #f4f3f7 50%, #eef4ff 100%);
+  color: #1b1b1e;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "DM Serif Display", Georgia, serif;
+}
+
+p,
+span,
+a,
+button,
+input,
+textarea,
+select,
+label {
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf8fa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c6d7;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a5b5;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #0058bc;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: #1b1b1e;
+  color: #faf8fa;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+img {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Figma Card Animation */
+.figma-card-wrapper {
+  display: block;
+}
+
+/* Animasi cursor yang akurat */
+.figma-svg #cursor-group {
+  animation: cursorMove 6s ease-in-out infinite;
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+
+@keyframes cursorMove {
+  0% {
+    opacity: 0;
+    transform: translate(80px, 0px) scale(1);
+  }
+  15% {
+    opacity: 0;
+    transform: translate(80px, 0px) scale(1);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(0px, 0px) scale(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-120px, 40px) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-120px, 40px) scale(0.92);
+  }
+  55% {
+    opacity: 1;
+    transform: translate(-120px, 40px) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-180px, -60px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-180px, -60px) scale(0.92);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-180px, -60px) scale(1);
+  }
+  95% {
+    opacity: 1;
+    transform: translate(-200px, -20px) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-200px, -20px) scale(1);
+  }
+}
+
+/* Animasi box (border biru) */
+.figma-svg #box {
+  opacity: 0;
+  animation: boxAppear 6s ease-in-out infinite;
+}
+
+@keyframes boxAppear {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  30%,
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.12),
+      transparent 40%
+    ),
+    linear-gradient(135deg, #faf8fa 0%, #f4f3f7 50%, #eef4ff 100%);
+  z-index: 9999;
+}
+
+/* Animasi fade out untuk loading */
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* src/App.css - Tambahkan di bagian bawah */
+
+/* Contact Animations */
+.contact-animate {
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Input focus ring */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* Custom select styling */
+select option {
+  background: white;
+  color: #1b1b1e;
+  padding: 8px;
+}
+
+/* Button hover effect */
+.group:hover .group-hover\:translate-x-1 {
+  transform: translateX(4px);
+}
+
+/* Smooth transition for all interactive elements */
+input,
+textarea,
+select,
+button {
+  transition: all 0.3s ease;
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .contact-animate {
+    transition-delay: 0s !important;
+  }
+}
+
+/* src/App.css - Tambahkan di bagian bawah */
+
+/* Success Animation - Checkmark */
+.success-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkmark-circle {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: checkmarkScale 0.5s ease-in-out;
+}
+
+.checkmark-circle .checkmark-stem {
+  position: absolute;
+  width: 3px;
+  height: 30px;
+  background-color: #00ca4e;
+  left: 38px;
+  top: 22px;
+  transform: rotate(45deg);
+  animation: checkmarkStem 0.4s ease-in-out 0.2s both;
+}
+
+.checkmark-circle .checkmark-kick {
+  position: absolute;
+  width: 3px;
+  height: 15px;
+  background-color: #00ca4e;
+  left: 50px;
+  top: 35px;
+  transform: rotate(-45deg);
+  animation: checkmarkKick 0.4s ease-in-out 0.3s both;
+}
+
+@keyframes checkmarkScale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkmarkStem {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes checkmarkKick {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 15px;
+    opacity: 1;
+  }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
