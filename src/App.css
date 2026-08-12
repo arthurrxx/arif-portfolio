@@ -370,3 +370,18 @@ button {
     overflow: hidden !important;
   }
 }
+
+/* Scroll Reveal Animation - scroll-magic-lite */
+[data-scroll-reveal] {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-scroll-reveal="fadeUp"] {
+  transform: translateY(40px);
+}
+
+[data-scroll-reveal="fadeUp"].visible {
+  opacity: 1;
+  transform: translateY(0);
+}

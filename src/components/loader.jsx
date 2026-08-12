@@ -4,293 +4,152 @@ import styled from "styled-components";
 const Loader = () => {
   return (
     <StyledWrapper>
-      <div className="loader-container">
-        <div className="loader">
-          <span>
-            <span />
-            <span />
-            <span />
-            <span />
-          </span>
-          <div className="base">
-            <span />
-            <div className="face" />
-          </div>
-        </div>
-        <div className="longfazers">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
+      <div className="loader">
+        <svg
+          className="container"
+          width={100}
+          height={100}
+          viewBox="0 0 64 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x={2}
+            y={2}
+            width={60}
+            height={36}
+            rx={4}
+            ry={4}
+            pathLength={100}
+            className="track"
+          />
+          <rect
+            x={2}
+            y={2}
+            width={60}
+            height={36}
+            rx={4}
+            ry={4}
+            pathLength={100}
+            className="car"
+          />
+          <g className="keys">
+            <rect x={8} y={8} width={6} height={5} rx={1} />
+            <rect x={16} y={8} width={6} height={5} rx={1} />
+            <rect x={24} y={8} width={6} height={5} rx={1} />
+            <rect x={32} y={8} width={6} height={5} rx={1} />
+            <rect x={40} y={8} width={6} height={5} rx={1} />
+            <rect x={48} y={8} width={8} height={5} rx={1} />
+            <rect x={8} y={16} width={6} height={5} rx={1} />
+            <rect x={16} y={16} width={6} height={5} rx={1} />
+            <rect x={24} y={16} width={6} height={5} rx={1} />
+            <rect x={32} y={16} width={6} height={5} rx={1} />
+            <rect x={40} y={16} width={6} height={5} rx={1} />
+            <rect x={48} y={16} width={8} height={5} rx={1} />
+            <rect x={8} y={24} width={8} height={5} rx={1} />
+            <rect x={18} y={24} width={6} height={5} rx={1} />
+            <rect x={26} y={24} width={18} height={5} rx={1} />
+            <rect x={46} y={24} width={10} height={5} rx={1} />
+          </g>
+        </svg>
       </div>
     </StyledWrapper>
   );
 };
 
 const StyledWrapper = styled.div`
-  .loader-container {
-    position: relative;
-    width: 120px;
-    height: 120px;
+  .loader {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
   }
 
-  .loader {
-    position: absolute;
-    top: 50%;
-    margin-left: -35px;
-    left: 50%;
-    animation: speeder 0.4s linear infinite;
-    transform: scale(0.7);
+  .container {
+    overflow: visible;
+    width: 80px;
+    height: 80px;
   }
-  .loader > span {
-    height: 4px;
-    width: 25px;
-    background: #1b1b1e;
-    position: absolute;
-    top: -15px;
-    left: 42px;
-    border-radius: 2px 8px 1px 0;
+
+  .track,
+  .car {
+    fill: none;
+    stroke-width: 2.5;
   }
-  .base span {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-right: 70px solid #1b1b1e;
-    border-bottom: 5px solid transparent;
+
+  .track {
+    stroke: #d0d0d0;
   }
-  .base span:before {
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: #1b1b1e;
-    position: absolute;
-    right: -78px;
-    top: -11px;
+
+  .car {
+    stroke: #1b1b1e;
+    stroke-linecap: round;
+    stroke-dasharray: 25 75;
+    animation: borderMove 2s linear infinite;
   }
-  .base span:after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 0 solid transparent;
-    border-right: 40px solid #1b1b1e;
-    border-bottom: 12px solid transparent;
-    top: -11px;
-    right: -70px;
+
+  .keys rect {
+    fill: #1b1b1e;
+    animation: typing 1.2s infinite;
   }
-  .face {
-    position: absolute;
-    height: 9px;
-    width: 14px;
-    background: #1b1b1e;
-    border-radius: 20px 20px 0 0;
-    transform: rotate(-40deg);
-    right: -88px;
-    top: -11px;
+
+  .keys rect:nth-child(2n) {
+    animation-delay: 0.15s;
   }
-  .face:after {
-    content: "";
-    height: 9px;
-    width: 9px;
-    background: #1b1b1e;
-    right: 3px;
-    top: 5px;
-    position: absolute;
-    transform: rotate(40deg);
-    transform-origin: 50% 50%;
-    border-radius: 0 0 0 2px;
+
+  .keys rect:nth-child(3n) {
+    animation-delay: 0.3s;
   }
-  .loader > span > span:nth-child(1),
-  .loader > span > span:nth-child(2),
-  .loader > span > span:nth-child(3),
-  .loader > span > span:nth-child(4) {
-    width: 22px;
-    height: 1px;
-    background: #1b1b1e;
-    position: absolute;
-    animation: fazer1 0.2s linear infinite;
+
+  .keys rect:nth-child(4n) {
+    animation-delay: 0.45s;
   }
-  .loader > span > span:nth-child(2) {
-    top: 2px;
-    animation: fazer2 0.4s linear infinite;
-  }
-  .loader > span > span:nth-child(3) {
-    top: 1px;
-    animation: fazer3 0.4s linear infinite;
-    animation-delay: -1s;
-  }
-  .loader > span > span:nth-child(4) {
-    top: 3px;
-    animation: fazer4 1s linear infinite;
-    animation-delay: -1s;
-  }
-  @keyframes fazer1 {
-    0% {
-      left: 0;
+
+  @keyframes borderMove {
+    from {
+      stroke-dashoffset: 100;
     }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes typing {
+    0%,
     100% {
-      left: -60px;
-      opacity: 0;
-    }
-  }
-  @keyframes fazer2 {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -75px;
-      opacity: 0;
-    }
-  }
-  @keyframes fazer3 {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -40px;
-      opacity: 0;
-    }
-  }
-  @keyframes fazer4 {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -110px;
-      opacity: 0;
-    }
-  }
-  @keyframes speeder {
-    0% {
-      transform: translate(2px, 1px) rotate(0deg) scale(0.7);
-    }
-    10% {
-      transform: translate(-1px, -3px) rotate(-1deg) scale(0.7);
-    }
-    20% {
-      transform: translate(-2px, 0px) rotate(1deg) scale(0.7);
-    }
-    30% {
-      transform: translate(1px, 2px) rotate(0deg) scale(0.7);
-    }
-    40% {
-      transform: translate(1px, -1px) rotate(1deg) scale(0.7);
+      opacity: 0.35;
     }
     50% {
-      transform: translate(-1px, 3px) rotate(-1deg) scale(0.7);
-    }
-    60% {
-      transform: translate(-1px, 1px) rotate(0deg) scale(0.7);
-    }
-    70% {
-      transform: translate(3px, 1px) rotate(-1deg) scale(0.7);
-    }
-    80% {
-      transform: translate(-2px, -1px) rotate(1deg) scale(0.7);
-    }
-    90% {
-      transform: translate(2px, 1px) rotate(0deg) scale(0.7);
-    }
-    100% {
-      transform: translate(1px, -2px) rotate(-1deg) scale(0.7);
-    }
-  }
-  .longfazers {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-  .longfazers span {
-    position: absolute;
-    height: 1.5px;
-    width: 15%;
-    background: #1b1b1e;
-    border-radius: 2px;
-  }
-  .longfazers span:nth-child(1) {
-    top: 20%;
-    animation: lf 0.6s linear infinite;
-    animation-delay: -5s;
-  }
-  .longfazers span:nth-child(2) {
-    top: 40%;
-    animation: lf2 0.8s linear infinite;
-    animation-delay: -1s;
-  }
-  .longfazers span:nth-child(3) {
-    top: 60%;
-    animation: lf3 0.6s linear infinite;
-  }
-  .longfazers span:nth-child(4) {
-    top: 80%;
-    animation: lf4 0.5s linear infinite;
-    animation-delay: -3s;
-  }
-  @keyframes lf {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -200%;
-      opacity: 0;
-    }
-  }
-  @keyframes lf2 {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -200%;
-      opacity: 0;
-    }
-  }
-  @keyframes lf3 {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -100%;
-      opacity: 0;
-    }
-  }
-  @keyframes lf4 {
-    0% {
-      left: 200%;
-    }
-    100% {
-      left: -100%;
-      opacity: 0;
+      opacity: 1;
     }
   }
 
+  /* Responsive */
   @media (max-width: 640px) {
-    .loader-container {
-      width: 80px;
-      height: 80px;
+    .container {
+      width: 60px;
+      height: 60px;
     }
-    .loader {
-      transform: scale(0.5);
-      margin-left: -25px;
+    .track,
+    .car {
+      stroke-width: 2;
     }
-    .longfazers span {
-      height: 1px;
-      width: 20%;
+    .keys rect {
+      rx: 0.5;
     }
   }
 
   @media (min-width: 641px) and (max-width: 1024px) {
-    .loader-container {
+    .container {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .container {
       width: 100px;
       height: 100px;
-    }
-    .loader {
-      transform: scale(0.6);
     }
   }
 `;

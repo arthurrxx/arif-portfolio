@@ -1,10 +1,25 @@
 // src/components/Hero.jsx
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { useScrollReveal } from "scroll-magic-lite/react";
 import profilePhoto from "../assets/profile1.webp";
 
 const Hero = ({ id }) => {
   const heroRef = useRef(null);
+
+  const titleRef = useScrollReveal({
+    animation: "fadeUp",
+    duration: 800,
+    delay: 200,
+    once: true,
+  });
+
+  const buttonRef = useScrollReveal({
+    animation: "fadeUp",
+    duration: 800,
+    delay: 400,
+    once: true,
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,7 +50,7 @@ const Hero = ({ id }) => {
     >
       <div className="w-full">
         <div className="grid items-center gap-6 md:gap-8 lg:gap-12 lg:grid-cols-[1fr_0.9fr] xl:gap-16">
-          <div className="max-w-4xl w-full">
+          <div className="max-w-4xl w-full" ref={titleRef}>
             {/* Figma Card */}
             <StyledCardWrapper className="max-w-full md:max-w-[614px]">
               <svg
@@ -159,7 +174,10 @@ const Hero = ({ id }) => {
             </StyledCardWrapper>
 
             {/* Tombol My CV & Social Media */}
-            <div className="flex flex-wrap items-center gap-4 md:gap-6 -mt-8 md:-mt-12 ml-2 md:ml-4">
+            <div
+              ref={buttonRef}
+              className="flex flex-wrap items-center gap-4 md:gap-6 -mt-8 md:-mt-12 ml-2 md:ml-4"
+            >
               {/* Tombol My CV */}
               <StyledButton3D>
                 <button>
@@ -200,7 +218,7 @@ const Hero = ({ id }) => {
             </div>
           </div>
 
-          {/* Profile Card */}
+          {/* ===== PROFILE CARD - MAC OS STYLE (FULL FOTO) ===== */}
           <div className="relative w-full">
             <StyledProfileCard>
               <div className="card">
@@ -221,11 +239,7 @@ const Hero = ({ id }) => {
                     alt="Profile"
                     className="profile-image"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1b1b1e]/90 via-[#1b1b1e]/30 to-transparent p-3 md:p-4 rounded-b-lg">
-                    <p className="text-[#faf8fa] text-[8px] md:text-[10px] font-medium tracking-[2px] md:tracking-[3px] uppercase">
-                      Junior Developer
-                    </p>
-                  </div>
+                  <div className="badge">Junior Developer</div>
                 </div>
               </div>
             </StyledProfileCard>
@@ -236,7 +250,7 @@ const Hero = ({ id }) => {
   );
 };
 
-// Styled untuk Figma Card
+// ===== STYLED UNTUK FIGMA CARD =====
 const StyledCardWrapper = styled.div`
   width: 100%;
   max-width: 614px;
@@ -297,7 +311,7 @@ const StyledCardWrapper = styled.div`
   }
 `;
 
-// Styled untuk Profile Card
+// ===== STYLED PROFILE CARD - MAC OS STYLE (FULL FOTO) =====
 const StyledProfileCard = styled.div`
   width: 100%;
   max-width: 380px;
@@ -305,47 +319,51 @@ const StyledProfileCard = styled.div`
 
   .card {
     width: min(100%, 380px);
-    height: 520px;
+    height: 480px;
     margin: 0 auto;
-    background-color: #f8fbfe;
-    border-radius: 12px;
+    background: #f5f7fa;
+    border-radius: 14px;
     z-index: 1;
     overflow: hidden;
-    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   .tools {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
-    background-color: #f8fbfe;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    gap: 8px;
+    position: relative;
+    z-index: 2;
   }
 
   .circle {
-    padding: 0 4px;
+    padding: 0 2px;
+    display: flex;
+    align-items: center;
   }
 
   .box {
     display: inline-block;
-    align-items: center;
-    width: 12px;
-    height: 12px;
-    padding: 1px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
   }
 
   .red {
-    background-color: #ff605c;
+    background: #ff5f57;
   }
 
   .yellow {
-    background-color: #ffbd44;
+    background: #ffbd2e;
   }
 
   .green {
-    background-color: #00ca4e;
+    background: #28c840;
   }
 
   .card__content {
@@ -353,36 +371,64 @@ const StyledProfileCard = styled.div`
     width: 100%;
     height: calc(100% - 48px);
     overflow: hidden;
-  }
-
-  .card__content img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    background: #f0f2f5;
   }
 
   .profile-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
+    display: block;
+  }
+
+  .badge {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   @media (max-width: 640px) {
     .card {
-      height: 420px;
+      height: 400px;
+      border-radius: 12px;
     }
     .tools {
-      padding: 8px 12px;
+      padding: 10px 14px;
     }
     .box {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
+    }
+    .badge {
+      font-size: 8px;
+      padding: 6px 14px;
+      bottom: 16px;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .card {
+      height: 440px;
     }
   }
 `;
 
-// Styled Button 3D
+// ===== STYLED BUTTON 3D =====
 const StyledButton3D = styled.div`
   button {
     position: relative;
@@ -484,7 +530,7 @@ const StyledButton3D = styled.div`
   }
 `;
 
-// Styled Social Icons
+// ===== STYLED SOCIAL ICONS =====
 const SocialWrapper = styled.div`
   .wrapper {
     display: inline-flex;

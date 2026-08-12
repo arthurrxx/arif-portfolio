@@ -1,17 +1,29 @@
 // src/components/Contact.jsx
 import { useState, useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 
 const Contact = ({ id }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    projectType: "",
-    details: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+    reset,
+    watch,
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      name: "",
+      email: "",
+      projectType: "",
+      details: "",
+    },
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [isSuccess, setIsSuccess] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const sectionRef = useRef(null);
+
+  const projectTypeValue = watch("projectType");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,9 +51,12 @@ const Contact = ({ id }) => {
     return () => observer.disconnect();
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const onSubmit = async (data) => {
+    console.log("Form data:", data);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsSuccess(true);
+    reset();
+    setTimeout(() => setIsSuccess(false), 5000);
   };
 
   const handleFocus = (field) => {
@@ -52,32 +67,9 @@ const Contact = ({ id }) => {
     setFocusedField(null);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.projectType ||
-      !formData.details
-    ) {
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({ name: "", email: "", projectType: "", details: "" });
-      setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
-  };
-
   const isFieldActive = (field) => {
-    return (
-      focusedField === field || (formData[field] && formData[field].length > 0)
-    );
+    const value = watch(field);
+    return focusedField === field || (value && value.length > 0);
   };
 
   const getProjectTypeLabel = (value) => {
@@ -179,22 +171,27 @@ const Contact = ({ id }) => {
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} noValidate>
+                <form onSubmit={handleSubmit(onSubmit)} noValidate>
                   <div className="space-y-6 md:space-y-8">
                     <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
+                      {/* Nama */}
                       <div className="relative">
                         <input
                           type="text"
                           id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
+                          {...register("name", {
+                            required: "Nama wajib diisi",
+                            minLength: {
+                              value: 2,
+                              message: "Minimal 2 karakter",
+                            },
+                          })}
                           onFocus={() => handleFocus("name")}
                           onBlur={handleBlur}
                           className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base focus:outline-none transition-all duration-300 placeholder:text-transparent
-                            border-b-2 ${isFieldActive("name") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}`}
+                            border-b-2 ${isFieldActive("name") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}
+                            ${errors.name ? "border-red-500" : ""}`}
                           placeholder=" "
-                          required
                         />
                         <label
                           htmlFor="name"
@@ -206,21 +203,31 @@ const Contact = ({ id }) => {
                         >
                           Nama Anda
                         </label>
+                        {errors.name && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.name.message}
+                          </p>
+                        )}
                       </div>
 
+                      {/* Email */}
                       <div className="relative">
                         <input
                           type="email"
                           id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
+                          {...register("email", {
+                            required: "Email wajib diisi",
+                            pattern: {
+                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                              message: "Email tidak valid",
+                            },
+                          })}
                           onFocus={() => handleFocus("email")}
                           onBlur={handleBlur}
                           className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base focus:outline-none transition-all duration-300 placeholder:text-transparent
-                            border-b-2 ${isFieldActive("email") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}`}
+                            border-b-2 ${isFieldActive("email") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}
+                            ${errors.email ? "border-red-500" : ""}`}
                           placeholder=" "
-                          required
                         />
                         <label
                           htmlFor="email"
@@ -232,24 +239,29 @@ const Contact = ({ id }) => {
                         >
                           Alamat Email
                         </label>
+                        {errors.email && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.email.message}
+                          </p>
+                        )}
                       </div>
                     </div>
 
-                    {/* Select Project Type */}
+                    {/* Project Type */}
                     <div className="relative">
                       <div className="relative">
                         <select
                           id="projectType"
-                          name="projectType"
-                          value={formData.projectType}
-                          onChange={handleChange}
+                          {...register("projectType", {
+                            required: "Jenis proyek wajib dipilih",
+                          })}
                           onFocus={() => handleFocus("projectType")}
                           onBlur={handleBlur}
                           className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base appearance-none focus:outline-none transition-all duration-300 cursor-pointer
                             border-b-2 ${isFieldActive("projectType") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}
-                            ${formData.projectType ? "text-[#1b1b1e]" : "text-[#717786]"}
+                            ${projectTypeValue ? "text-[#1b1b1e]" : "text-[#717786]"}
+                            ${errors.projectType ? "border-red-500" : ""}
                             relative z-10`}
-                          required
                           style={{
                             WebkitAppearance: "none",
                             MozAppearance: "none",
@@ -316,27 +328,38 @@ const Contact = ({ id }) => {
                         />
                       </div>
 
-                      {formData.projectType && (
+                      {errors.projectType && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.projectType.message}
+                        </p>
+                      )}
+
+                      {projectTypeValue && !errors.projectType && (
                         <div className="mt-2 text-[10px] text-[#717786] tracking-wider uppercase flex items-center gap-2">
                           <span className="w-4 h-px bg-[#717786]" />
-                          {getProjectTypeLabel(formData.projectType)}
+                          {getProjectTypeLabel(projectTypeValue)}
                         </div>
                       )}
                     </div>
 
+                    {/* Details */}
                     <div className="relative">
                       <textarea
                         id="details"
-                        name="details"
-                        value={formData.details}
-                        onChange={handleChange}
+                        rows="4"
+                        {...register("details", {
+                          required: "Detail proyek wajib diisi",
+                          minLength: {
+                            value: 10,
+                            message: "Minimal 10 karakter",
+                          },
+                        })}
                         onFocus={() => handleFocus("details")}
                         onBlur={handleBlur}
-                        rows="4"
                         className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base resize-y focus:outline-none transition-all duration-300 placeholder:text-transparent
-                          border-b-2 ${isFieldActive("details") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"} min-h-[80px] md:min-h-[100px]`}
+                          border-b-2 ${isFieldActive("details") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}
+                          ${errors.details ? "border-red-500" : ""} min-h-[80px] md:min-h-[100px]`}
                         placeholder=" "
-                        required
                       />
                       <label
                         htmlFor="details"
@@ -348,6 +371,11 @@ const Contact = ({ id }) => {
                       >
                         Detail Proyek
                       </label>
+                      {errors.details && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.details.message}
+                        </p>
+                      )}
                     </div>
 
                     <div className="flex justify-end pt-2 md:pt-4">
