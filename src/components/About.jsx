@@ -1,4 +1,6 @@
+// src/components/About.jsx
 import { useEffect, useRef } from "react";
+import aboutPhoto from "../assets/profile2.webp";
 
 const About = ({ id }) => {
   const sectionRef = useRef(null);
@@ -33,7 +35,7 @@ const About = ({ id }) => {
     <section
       id={id}
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-[#c1c6d7]/20"
+      className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20 border-t border-[#c1c6d7]/20 bg-[#f0eef2]"
       aria-labelledby="about-heading"
     >
       <div className="grid md:grid-cols-12 gap-12">
@@ -44,7 +46,7 @@ const About = ({ id }) => {
             </span>
             <h2
               id="about-heading"
-              className="font-['Playfair_Display'] text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.1] text-[#1b1b1e] mt-4"
+              className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.1] text-[#1b1b1e] mt-4"
             >
               Lulusan SMK
               <br />
@@ -60,7 +62,11 @@ const About = ({ id }) => {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-[#1b1b1e]/5 via-[#c1c6d7]/5 to-transparent rounded-3xl blur-2xl" />
               <div className="relative overflow-hidden rounded-2xl bg-[#f5f3f6] border border-[#c1c6d7]/20">
-                <div className="aspect-[4/3] bg-gradient-to-br from-[#f5f3f6] to-[#e9e7eb]"></div>
+                <img
+                  src={aboutPhoto}
+                  alt="Arif Faturahman - Junior Developer"
+                  className="w-full h-full object-cover aspect-[4/3]"
+                />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#1b1b1e]/90 to-transparent">
                   <p className="text-white/90 text-xs font-medium tracking-wider">
                     ARIF FATURAHMAN ALHAKIM JAENUDIN

@@ -80,7 +80,6 @@ const Contact = ({ id }) => {
     );
   };
 
-  // Get label for selected project type
   const getProjectTypeLabel = (value) => {
     const labels = {
       branding: "Branding & Identitas",
@@ -96,7 +95,7 @@ const Contact = ({ id }) => {
     <section
       id={id}
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-[#c1c6d7]/10"
+      className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20 border-t border-[#c1c6d7]/10 bg-[#f0eef2]"
       aria-labelledby="contact-heading"
     >
       <div className="grid md:grid-cols-12 gap-16 lg:gap-24">
@@ -109,13 +108,13 @@ const Contact = ({ id }) => {
             </span>
             <h1
               id="contact-heading"
-              className="font-['Playfair_Display'] text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight leading-[1.1] text-[#1b1b1e] mt-4"
+              className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.1] text-[#1b1b1e] mt-4"
             >
               Mari
               <br />
               berkolaborasi.
             </h1>
-            <p className="text-[#5f5e5e] text-base sm:text-lg leading-relaxed tracking-tight mt-6 max-w-sm">
+            <p className="text-[#5f5e5e] text-sm sm:text-base md:text-lg leading-relaxed tracking-tight mt-6 max-w-sm">
               Saya adalah Arif Faturahman Alhakim Jaenudin, lulusan SMK Mardi
               Yuana Cikembar jurusan RPL yang berdomisili di Sukabumi. Saya siap
               membantu mewujudkan website dan produk digital yang modern.
@@ -128,7 +127,7 @@ const Contact = ({ id }) => {
                 </span>
                 <a
                   href="mailto:hello@curatorstudio.com"
-                  className="block text-[#1b1b1e] text-lg hover:text-[#0058bc] transition-colors mt-1.5 group-hover:translate-x-1 transition-transform"
+                  className="block text-[#1b1b1e] text-base md:text-lg hover:text-[#0058bc] transition-colors mt-1.5 group-hover:translate-x-1 transition-transform"
                 >
                   hello@curatorstudio.com
                 </a>
@@ -138,7 +137,7 @@ const Contact = ({ id }) => {
                 <span className="text-[#717786] text-[10px] font-medium tracking-[2px] uppercase">
                   Domisili
                 </span>
-                <p className="text-[#1b1b1e] text-lg leading-relaxed mt-1.5">
+                <p className="text-[#1b1b1e] text-base md:text-lg leading-relaxed mt-1.5">
                   Sukabumi,
                   <br />
                   Jawa Barat
@@ -154,7 +153,7 @@ const Contact = ({ id }) => {
             <div className="relative">
               <div className="absolute -inset-8 bg-gradient-to-br from-[#0058bc]/5 via-[#c1c6d7]/5 to-[#efb15b]/5 rounded-3xl blur-2xl" />
 
-              <div className="relative bg-white rounded-2xl shadow-[0_8px_50px_-12px_rgba(0,0,0,0.08)] border border-[#c1c6d7]/10 p-8 md:p-10 overflow-hidden">
+              <div className="relative bg-white rounded-2xl shadow-[0_8px_50px_-12px_rgba(0,0,0,0.08)] border border-[#c1c6d7]/10 p-6 md:p-8 lg:p-10 overflow-hidden">
                 {/* Success Overlay */}
                 {isSuccess && (
                   <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex flex-col items-center justify-center animate-fadeIn">
@@ -167,7 +166,7 @@ const Contact = ({ id }) => {
                     <h3 className="text-2xl font-['Playfair_Display'] text-[#1b1b1e] mt-4">
                       Pesan Terkirim!
                     </h3>
-                    <p className="text-[#5f5e5e] text-sm mt-2">
+                    <p className="text-[#5f5e5e] text-sm mt-2 text-center px-4">
                       Terima kasih telah menghubungi saya. Saya akan membalas
                       dalam waktu 24 jam.
                     </p>
@@ -181,8 +180,8 @@ const Contact = ({ id }) => {
                 )}
 
                 <form onSubmit={handleSubmit} noValidate>
-                  <div className="space-y-8">
-                    <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="space-y-6 md:space-y-8">
+                    <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                       <div className="relative">
                         <input
                           type="text"
@@ -192,7 +191,7 @@ const Contact = ({ id }) => {
                           onChange={handleChange}
                           onFocus={() => handleFocus("name")}
                           onBlur={handleBlur}
-                          className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-base focus:outline-none transition-all duration-300 placeholder:text-transparent
+                          className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base focus:outline-none transition-all duration-300 placeholder:text-transparent
                             border-b-2 ${isFieldActive("name") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}`}
                           placeholder=" "
                           required
@@ -202,7 +201,7 @@ const Contact = ({ id }) => {
                           className={`absolute left-0 transition-all duration-300 cursor-text ${
                             isFieldActive("name")
                               ? "-top-1 text-[10px] tracking-wider text-[#717786]"
-                              : "top-4 text-base text-[#717786]"
+                              : "top-4 text-sm md:text-base text-[#717786]"
                           }`}
                         >
                           Nama Anda
@@ -218,7 +217,7 @@ const Contact = ({ id }) => {
                           onChange={handleChange}
                           onFocus={() => handleFocus("email")}
                           onBlur={handleBlur}
-                          className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-base focus:outline-none transition-all duration-300 placeholder:text-transparent
+                          className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base focus:outline-none transition-all duration-300 placeholder:text-transparent
                             border-b-2 ${isFieldActive("email") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}`}
                           placeholder=" "
                           required
@@ -228,7 +227,7 @@ const Contact = ({ id }) => {
                           className={`absolute left-0 transition-all duration-300 cursor-text ${
                             isFieldActive("email")
                               ? "-top-1 text-[10px] tracking-wider text-[#717786]"
-                              : "top-4 text-base text-[#717786]"
+                              : "top-4 text-sm md:text-base text-[#717786]"
                           }`}
                         >
                           Alamat Email
@@ -236,7 +235,7 @@ const Contact = ({ id }) => {
                       </div>
                     </div>
 
-                    {/* Select Project Type - Perbaikan Mobile */}
+                    {/* Select Project Type */}
                     <div className="relative">
                       <div className="relative">
                         <select
@@ -246,13 +245,12 @@ const Contact = ({ id }) => {
                           onChange={handleChange}
                           onFocus={() => handleFocus("projectType")}
                           onBlur={handleBlur}
-                          className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-base appearance-none focus:outline-none transition-all duration-300 cursor-pointer
+                          className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base appearance-none focus:outline-none transition-all duration-300 cursor-pointer
                             border-b-2 ${isFieldActive("projectType") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"}
                             ${formData.projectType ? "text-[#1b1b1e]" : "text-[#717786]"}
                             relative z-10`}
                           required
                           style={{
-                            // Fix untuk mobile agar tidak tembus
                             WebkitAppearance: "none",
                             MozAppearance: "none",
                           }}
@@ -284,19 +282,17 @@ const Contact = ({ id }) => {
                           </option>
                         </select>
 
-                        {/* Label yang floating */}
                         <label
                           htmlFor="projectType"
                           className={`absolute left-0 transition-all duration-300 cursor-pointer pointer-events-none ${
                             isFieldActive("projectType")
                               ? "-top-1 text-[10px] tracking-wider text-[#717786]"
-                              : "top-4 text-base text-[#717786]"
+                              : "top-4 text-sm md:text-base text-[#717786]"
                           }`}
                         >
                           Jenis Proyek
                         </label>
 
-                        {/* Icon panah custom */}
                         <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
                           <svg
                             className={`w-4 h-4 text-[#717786] transition-all duration-300 ${
@@ -313,7 +309,6 @@ const Contact = ({ id }) => {
                           </svg>
                         </div>
 
-                        {/* Decorative line bawah select */}
                         <div
                           className={`absolute bottom-0 left-0 h-[2px] bg-[#1b1b1e] transition-all duration-500 ${
                             isFieldActive("projectType") ? "w-full" : "w-0"
@@ -321,7 +316,6 @@ const Contact = ({ id }) => {
                         />
                       </div>
 
-                      {/* Selected value display */}
                       {formData.projectType && (
                         <div className="mt-2 text-[10px] text-[#717786] tracking-wider uppercase flex items-center gap-2">
                           <span className="w-4 h-px bg-[#717786]" />
@@ -339,8 +333,8 @@ const Contact = ({ id }) => {
                         onFocus={() => handleFocus("details")}
                         onBlur={handleBlur}
                         rows="4"
-                        className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-base resize-y focus:outline-none transition-all duration-300 placeholder:text-transparent
-                          border-b-2 ${isFieldActive("details") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"} min-h-[100px]`}
+                        className={`w-full pt-6 pb-2.5 px-0 bg-transparent text-[#1b1b1e] text-sm md:text-base resize-y focus:outline-none transition-all duration-300 placeholder:text-transparent
+                          border-b-2 ${isFieldActive("details") ? "border-[#1b1b1e]" : "border-[#c1c6d7]/30"} min-h-[80px] md:min-h-[100px]`}
                         placeholder=" "
                         required
                       />
@@ -349,20 +343,20 @@ const Contact = ({ id }) => {
                         className={`absolute left-0 transition-all duration-300 cursor-text ${
                           isFieldActive("details")
                             ? "-top-1 text-[10px] tracking-wider text-[#717786]"
-                            : "top-4 text-base text-[#717786]"
+                            : "top-4 text-sm md:text-base text-[#717786]"
                         }`}
                       >
                         Detail Proyek
                       </label>
                     </div>
 
-                    <div className="flex justify-end pt-4">
+                    <div className="flex justify-end pt-2 md:pt-4">
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#1b1b1e] rounded-full overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="group relative inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-[#1b1b1e] rounded-full overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <span className="relative z-10 text-[#fbf9fc] text-xs font-medium tracking-wider">
+                        <span className="relative z-10 text-[#fbf9fc] text-[10px] md:text-xs font-medium tracking-wider">
                           {isSubmitting ? (
                             <span className="flex items-center gap-2">
                               <svg

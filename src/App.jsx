@@ -53,7 +53,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8fa]">
+    <div className="min-h-screen">
       <Header activeSection={activeSection} />
       <main>
         <Hero id="hero" />

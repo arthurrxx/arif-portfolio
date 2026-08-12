@@ -1,9 +1,10 @@
+// src/components/Loader.jsx
 import styled from "styled-components";
 
 const Loader = () => {
   return (
     <StyledWrapper>
-      <div>
+      <div className="loader-container">
         <div className="loader">
           <span>
             <span />
@@ -28,46 +29,49 @@ const Loader = () => {
 };
 
 const StyledWrapper = styled.div`
-  position: relative;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .loader-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .loader {
     position: absolute;
     top: 50%;
-    margin-left: -50px;
+    margin-left: -35px;
     left: 50%;
     animation: speeder 0.4s linear infinite;
+    transform: scale(0.7);
   }
   .loader > span {
-    height: 5px;
-    width: 35px;
+    height: 4px;
+    width: 25px;
     background: #1b1b1e;
     position: absolute;
-    top: -19px;
-    left: 60px;
-    border-radius: 2px 10px 1px 0;
+    top: -15px;
+    left: 42px;
+    border-radius: 2px 8px 1px 0;
   }
   .base span {
     position: absolute;
     width: 0;
     height: 0;
-    border-top: 6px solid transparent;
-    border-right: 100px solid #1b1b1e;
-    border-bottom: 6px solid transparent;
+    border-top: 5px solid transparent;
+    border-right: 70px solid #1b1b1e;
+    border-bottom: 5px solid transparent;
   }
   .base span:before {
     content: "";
-    height: 22px;
-    width: 22px;
+    height: 16px;
+    width: 16px;
     border-radius: 50%;
     background: #1b1b1e;
     position: absolute;
-    right: -110px;
-    top: -16px;
+    right: -78px;
+    top: -11px;
   }
   .base span:after {
     content: "";
@@ -75,28 +79,28 @@ const StyledWrapper = styled.div`
     width: 0;
     height: 0;
     border-top: 0 solid transparent;
-    border-right: 55px solid #1b1b1e;
-    border-bottom: 16px solid transparent;
-    top: -16px;
-    right: -98px;
+    border-right: 40px solid #1b1b1e;
+    border-bottom: 12px solid transparent;
+    top: -11px;
+    right: -70px;
   }
   .face {
     position: absolute;
-    height: 12px;
-    width: 20px;
+    height: 9px;
+    width: 14px;
     background: #1b1b1e;
     border-radius: 20px 20px 0 0;
     transform: rotate(-40deg);
-    right: -125px;
-    top: -15px;
+    right: -88px;
+    top: -11px;
   }
   .face:after {
     content: "";
-    height: 12px;
-    width: 12px;
+    height: 9px;
+    width: 9px;
     background: #1b1b1e;
-    right: 4px;
-    top: 7px;
+    right: 3px;
+    top: 5px;
     position: absolute;
     transform: rotate(40deg);
     transform-origin: 50% 50%;
@@ -106,14 +110,14 @@ const StyledWrapper = styled.div`
   .loader > span > span:nth-child(2),
   .loader > span > span:nth-child(3),
   .loader > span > span:nth-child(4) {
-    width: 30px;
+    width: 22px;
     height: 1px;
     background: #1b1b1e;
     position: absolute;
     animation: fazer1 0.2s linear infinite;
   }
   .loader > span > span:nth-child(2) {
-    top: 3px;
+    top: 2px;
     animation: fazer2 0.4s linear infinite;
   }
   .loader > span > span:nth-child(3) {
@@ -122,7 +126,7 @@ const StyledWrapper = styled.div`
     animation-delay: -1s;
   }
   .loader > span > span:nth-child(4) {
-    top: 4px;
+    top: 3px;
     animation: fazer4 1s linear infinite;
     animation-delay: -1s;
   }
@@ -131,7 +135,7 @@ const StyledWrapper = styled.div`
       left: 0;
     }
     100% {
-      left: -80px;
+      left: -60px;
       opacity: 0;
     }
   }
@@ -140,7 +144,7 @@ const StyledWrapper = styled.div`
       left: 0;
     }
     100% {
-      left: -100px;
+      left: -75px;
       opacity: 0;
     }
   }
@@ -149,7 +153,7 @@ const StyledWrapper = styled.div`
       left: 0;
     }
     100% {
-      left: -50px;
+      left: -40px;
       opacity: 0;
     }
   }
@@ -158,43 +162,43 @@ const StyledWrapper = styled.div`
       left: 0;
     }
     100% {
-      left: -150px;
+      left: -110px;
       opacity: 0;
     }
   }
   @keyframes speeder {
     0% {
-      transform: translate(2px, 1px) rotate(0deg);
+      transform: translate(2px, 1px) rotate(0deg) scale(0.7);
     }
     10% {
-      transform: translate(-1px, -3px) rotate(-1deg);
+      transform: translate(-1px, -3px) rotate(-1deg) scale(0.7);
     }
     20% {
-      transform: translate(-2px, 0px) rotate(1deg);
+      transform: translate(-2px, 0px) rotate(1deg) scale(0.7);
     }
     30% {
-      transform: translate(1px, 2px) rotate(0deg);
+      transform: translate(1px, 2px) rotate(0deg) scale(0.7);
     }
     40% {
-      transform: translate(1px, -1px) rotate(1deg);
+      transform: translate(1px, -1px) rotate(1deg) scale(0.7);
     }
     50% {
-      transform: translate(-1px, 3px) rotate(-1deg);
+      transform: translate(-1px, 3px) rotate(-1deg) scale(0.7);
     }
     60% {
-      transform: translate(-1px, 1px) rotate(0deg);
+      transform: translate(-1px, 1px) rotate(0deg) scale(0.7);
     }
     70% {
-      transform: translate(3px, 1px) rotate(-1deg);
+      transform: translate(3px, 1px) rotate(-1deg) scale(0.7);
     }
     80% {
-      transform: translate(-2px, -1px) rotate(1deg);
+      transform: translate(-2px, -1px) rotate(1deg) scale(0.7);
     }
     90% {
-      transform: translate(2px, 1px) rotate(0deg);
+      transform: translate(2px, 1px) rotate(0deg) scale(0.7);
     }
     100% {
-      transform: translate(1px, -2px) rotate(-1deg);
+      transform: translate(1px, -2px) rotate(-1deg) scale(0.7);
     }
   }
   .longfazers {
@@ -204,9 +208,10 @@ const StyledWrapper = styled.div`
   }
   .longfazers span {
     position: absolute;
-    height: 2px;
-    width: 20%;
+    height: 1.5px;
+    width: 15%;
     background: #1b1b1e;
+    border-radius: 2px;
   }
   .longfazers span:nth-child(1) {
     top: 20%;
@@ -264,25 +269,28 @@ const StyledWrapper = styled.div`
     }
   }
 
-  .brand-text {
-    position: absolute;
-    bottom: -10px;
-    font-family: "Playfair Display", serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: #1b1b1e;
-    letter-spacing: 4px;
-    opacity: 0.5;
-    animation: pulse 1.5s ease-in-out infinite;
+  @media (max-width: 640px) {
+    .loader-container {
+      width: 80px;
+      height: 80px;
+    }
+    .loader {
+      transform: scale(0.5);
+      margin-left: -25px;
+    }
+    .longfazers span {
+      height: 1px;
+      width: 20%;
+    }
   }
 
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 0.3;
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .loader-container {
+      width: 100px;
+      height: 100px;
     }
-    50% {
-      opacity: 0.8;
+    .loader {
+      transform: scale(0.6);
     }
   }
 `;

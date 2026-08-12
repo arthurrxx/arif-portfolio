@@ -48,38 +48,48 @@ const Clients = () => {
   return (
     <section
       ref={containerRef}
-      className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-[#c1c6d7]/20"
+      className="w-full max-w-full overflow-hidden border-t border-[#c1c6d7]/20 bg-white/70 py-16 md:py-20"
       aria-labelledby="clients-heading"
     >
-      <div className="mb-12">
-        <span className="text-[#5f5e5e] text-xs font-medium tracking-[2px] uppercase">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 mb-8 md:mb-12">
+        <span className="text-[#5f5e5e] text-[10px] md:text-xs font-medium tracking-[2px] uppercase">
           Dipercaya Oleh
         </span>
         <h2
           id="clients-heading"
-          className="font-['Playfair_Display'] text-4xl sm:text-5xl font-normal tracking-tight text-[#1b1b1e] mt-2"
+          className="font-['Playfair_Display'] text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-[#1b1b1e] mt-2"
         >
           Klien
         </h2>
       </div>
 
-      <div className="relative overflow-hidden border-y border-[#c1c6d7]/10 bg-[#f5f3f6]/50 py-8">
+      {/* Container scrolling - FULL tanpa padding */}
+      <div className="relative overflow-hidden border-y border-[#c1c6d7]/10 bg-[#f5f3f6]/50 py-8 md:py-10 w-full">
         <div
           ref={scrollRef}
-          className="flex items-center gap-16 md:gap-20 whitespace-nowrap will-change-transform"
-          style={{ width: "fit-content" }}
+          className="flex items-center gap-12 md:gap-16 lg:gap-20 whitespace-nowrap will-change-transform"
+          style={{
+            width: "fit-content",
+            paddingLeft: "0",
+            paddingRight: "0",
+          }}
         >
-          {/* Duplikat 4 kali agar lebih panjang */}
-          {[...clients, ...clients, ...clients, ...clients].map(
-            (client, index) => (
-              <span
-                key={index}
-                className="font-['Playfair_Display'] text-2xl sm:text-3xl md:text-4xl font-normal text-[#414755] opacity-40 hover:opacity-70 transition-opacity duration-300"
-              >
-                {client}
-              </span>
-            ),
-          )}
+          {/* Duplikat 6 kali agar lebih panjang dan full */}
+          {[
+            ...clients,
+            ...clients,
+            ...clients,
+            ...clients,
+            ...clients,
+            ...clients,
+          ].map((client, index) => (
+            <span
+              key={index}
+              className="font-['Playfair_Display'] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#414755] opacity-40 hover:opacity-70 transition-opacity duration-300 whitespace-nowrap"
+            >
+              {client}
+            </span>
+          ))}
         </div>
       </div>
     </section>

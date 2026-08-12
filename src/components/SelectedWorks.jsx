@@ -58,10 +58,10 @@ const SelectedWorks = ({ id }) => {
     <section
       id={id}
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-[#c1c6d7]/10"
+      className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20 border-t border-[#c1c6d7]/10 bg-white/70"
       aria-labelledby="selected-works-title"
     >
-      {/* Header - Sederhana & Konsisten */}
+      {/* Header */}
       <div className="mb-12">
         <span className="text-[#5f5e5e] text-xs font-medium tracking-[2px] uppercase">
           Portofolio
@@ -75,21 +75,20 @@ const SelectedWorks = ({ id }) => {
       </div>
 
       {/* Grid - 4 kotak */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {projects.map((project, index) => {
           const delay = index * 0.1;
 
           return (
             <div
               key={project.id}
-              className={`group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] h-[280px] md:h-[340px] lg:h-[420px] ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
               style={{
                 transitionDelay: `${delay}s`,
-                height: "420px",
               }}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
@@ -110,21 +109,21 @@ const SelectedWorks = ({ id }) => {
 
               {/* Caption */}
               <div
-                className={`absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/60 to-transparent transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/90 via-black/60 to-transparent transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   hoveredId === project.id
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-full"
                 }`}
               >
-                <p className="text-white text-base md:text-lg leading-relaxed">
+                <p className="text-white text-sm md:text-base lg:text-lg leading-relaxed">
                   {project.description}
                 </p>
-                <div className="flex items-center gap-2 mt-4">
-                  <span className="text-white/60 text-xs font-medium tracking-wider uppercase">
+                <div className="flex items-center gap-2 mt-3 md:mt-4">
+                  <span className="text-white/60 text-[10px] md:text-xs font-medium tracking-wider uppercase">
                     Lihat Proyek
                   </span>
                   <svg
-                    className="w-4 h-3 text-white/60 group-hover:translate-x-1 transition-transform"
+                    className="w-3 h-2 md:w-4 md:h-3 text-white/60 group-hover:translate-x-1 transition-transform"
                     viewBox="0 0 16 12"
                     fill="none"
                   >
