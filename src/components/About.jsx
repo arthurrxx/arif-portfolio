@@ -116,10 +116,10 @@ const About = ({ id }) => {
               terstruktur, serta mudah digunakan.
             </p>
             <p className="text-[#414755] text-base md:text-lg lg:text-xl leading-relaxed tracking-tight">
-              Berbasis di Sukabumi, saya juga mempelajari dasar-dasar
-              cybersecurity untuk memahami cara menjaga keamanan aplikasi web.
-              Saya terus mengembangkan keterampilan agar dapat menghadirkan
-              pengalaman digital yang modern dan aman.
+              Saya juga mempelajari dasar-dasar cybersecurity untuk memahami
+              cara menjaga keamanan aplikasi web. Saya terus mengembangkan
+              keterampilan agar dapat menghadirkan pengalaman digital yang
+              modern dan aman.
             </p>
           </div>
         </div>
