@@ -44,7 +44,7 @@ const Header = ({ activeSection }) => {
   const navItems = [
     { id: "hero", label: "Beranda" },
     { id: "about", label: "Tentang" },
-    { id: "work", label: "Portofolio" },
+    { id: "work", label: "Karya" },
     { id: "contact", label: "Kontak" },
   ];
 

@@ -1,7 +1,7 @@
 // src/components/Clients.jsx
 import { useEffect, useRef } from "react";
 
-const clients = ["VOGUE", "AESOP", "LEICA", "KINFORK", "HERMÈS", "RIMOWA"];
+const clients = ["REACT", "VITE", "HTML", "CSS", "JAVASCRIPT", "NODE JS"];
 
 const Clients = () => {
   const containerRef = useRef(null);
@@ -53,17 +53,16 @@ const Clients = () => {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-12 mb-8 md:mb-12">
         <span className="text-[#5f5e5e] text-[10px] md:text-xs font-medium tracking-[2px] uppercase">
-          Dipercaya Oleh
+          STACK TEKNOLOGI YANG DIGUNAKAN
         </span>
         <h2
           id="clients-heading"
           className="font-['Playfair_Display'] text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-[#1b1b1e] mt-2"
         >
-          Klien
+          Teknologi
         </h2>
       </div>
 
-      {/* Container scrolling - FULL tanpa padding */}
       <div className="relative overflow-hidden border-y border-[#c1c6d7]/10 bg-[#f5f3f6]/50 py-8 md:py-10 w-full">
         <div
           ref={scrollRef}
@@ -74,7 +73,6 @@ const Clients = () => {
             paddingRight: "0",
           }}
         >
-          {/* Duplikat 6 kali agar lebih panjang dan full */}
           {[
             ...clients,
             ...clients,

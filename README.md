@@ -1,4 +1,4 @@
-# Curator Studio — Portfolio Website
+## Portfolio Website
 
 A modern, minimalist portfolio website built with React, Vite, and Tailwind CSS.
 

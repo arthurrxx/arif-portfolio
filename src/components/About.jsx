@@ -110,14 +110,16 @@ const About = ({ id }) => {
           {/* Deskripsi */}
           <div ref={descRef} className="space-y-4 md:space-y-6">
             <p className="text-[#414755] text-base md:text-lg lg:text-xl leading-relaxed tracking-tight">
-              Saya adalah Arif Faturahman Alhakim Jaenudin, fresh graduate dari
-              SMK Mardi Yuana Cikembar jurusan RPL. Saya tertarik membangun
-              karya digital yang rapi, jelas, dan mudah dipahami.
+              Saya Arif Faturahman Alhakim Jaenudin, lulusan Rekayasa Perangkat
+              Lunak dari SMK Mardi Yuana Cikembar. Saya berfokus pada web
+              development dan tertarik membangun situs yang fungsional,
+              terstruktur, serta mudah digunakan.
             </p>
             <p className="text-[#414755] text-base md:text-lg lg:text-xl leading-relaxed tracking-tight">
-              Saya berdomisili di Sukabumi dan berkomitmen terus belajar untuk
-              menghadirkan pengalaman web yang bersih, modern, dan siap untuk
-              kebutuhan masa depan.
+              Berbasis di Sukabumi, saya juga mempelajari dasar-dasar
+              cybersecurity untuk memahami cara menjaga keamanan aplikasi web.
+              Saya terus mengembangkan keterampilan agar dapat menghadirkan
+              pengalaman digital yang modern dan aman.
             </p>
           </div>
         </div>

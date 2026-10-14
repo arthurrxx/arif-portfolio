@@ -2,7 +2,14 @@
 import RealTimeClockFooter from "./RealtimeClock";
 
 const Footer = () => {
-  const socialLinks = ["LinkedIn", "Instagram", "Twitter", "Dribbble"];
+  const socialLinks = [
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/arif-faturahman-4825a53b3/",
+    },
+    { name: "Instagram", href: "https://www.instagram.com/ryf.ftrhmn/" },
+    { name: "GitHub", href: "https://github.com/arthurrxx" },
+  ];
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -30,14 +37,17 @@ const Footer = () => {
           className="flex items-center gap-4 md:gap-6"
           aria-label="Media sosial"
         >
-          {socialLinks.map((social) => (
-            <button
-              key={social}
+          {socialLinks.map(({ name, href }) => (
+            <a
+              key={name}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
               className="text-[#4a4a55] text-[10px] md:text-xs font-medium tracking-wider hover:text-[#1b1b1e] transition-colors"
-              aria-label={`Kunjungi ${social}`}
+              aria-label={`Kunjungi ${name}`}
             >
-              {social}
-            </button>
+              {name}
+            </a>
           ))}
         </nav>
       </div>
@@ -46,7 +56,7 @@ const Footer = () => {
       <div className="border-t border-[#a8a5b0]/30">
         <div className="max-w-7xl mx-auto px-4 md:px-12 py-3 md:py-4 flex justify-center">
           <p className="text-[#4a4a55] text-[8px] md:text-[10px] font-medium tracking-wider">
-            © 2026 PORTFOLIO ARIF. SEMUA HAK DILINDUNGI.
+            © 2026 PORTFOLIO ARIF.
           </p>
         </div>
       </div>

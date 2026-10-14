@@ -32,9 +32,9 @@ const expertiseData = [
         />
       </svg>
     ),
-    title: "Identitas Brand",
+    title: "SCRIPTING & KODE",
     description:
-      "Menyusun sistem visual yang konsisten agar brand tampil lebih premium dan terpercaya.",
+      "Menerapkan logika dan fungsionalitas melalui kode yang bersih, efisien, dan terstruktur untuk membangun aplikasi web yang dinamis.",
   },
   {
     icon: (

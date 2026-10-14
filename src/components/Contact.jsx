@@ -5,9 +5,7 @@ import { useForm } from "react-hook-form";
 const Contact = ({ id }) => {
   const {
     register,
-    handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
-    reset,
+    formState: { errors },
     watch,
   } = useForm({
     mode: "onChange",
@@ -19,7 +17,6 @@ const Contact = ({ id }) => {
     },
   });
 
-  const [isSuccess, setIsSuccess] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const sectionRef = useRef(null);
 
@@ -50,14 +47,6 @@ const Contact = ({ id }) => {
 
     return () => observer.disconnect();
   }, []);
-
-  const onSubmit = async (data) => {
-    console.log("Form data:", data);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSuccess(true);
-    reset();
-    setTimeout(() => setIsSuccess(false), 5000);
-  };
 
   const handleFocus = (field) => {
     setFocusedField(field);
@@ -96,32 +85,25 @@ const Contact = ({ id }) => {
           <div className="contact-animate opacity-0 translate-y-10 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
             <span className="inline-flex items-center gap-2 text-[#5f5e5e] text-xs font-medium tracking-[3px] uppercase">
               <span className="w-8 h-px bg-[#5f5e5e]" />
-              Hubungi Saya
+              Kontak
             </span>
             <h1
               id="contact-heading"
               className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.1] text-[#1b1b1e] mt-4"
             >
-              Mari
-              <br />
-              berkolaborasi.
+              Hubungi saya.
             </h1>
-            <p className="text-[#5f5e5e] text-sm sm:text-base md:text-lg leading-relaxed tracking-tight mt-6 max-w-sm">
-              Saya adalah Arif Faturahman Alhakim Jaenudin, lulusan SMK Mardi
-              Yuana Cikembar jurusan RPL yang berdomisili di Sukabumi. Saya siap
-              membantu mewujudkan website dan produk digital yang modern.
-            </p>
 
-            <div className="mt-10 space-y-8">
+            <div className="mt-8 space-y-6">
               <div className="group">
                 <span className="text-[#717786] text-[10px] font-medium tracking-[2px] uppercase">
                   Email
                 </span>
                 <a
-                  href="mailto:hello@curatorstudio.com"
+                  href="mailto:arifpaturahman19@gmail.com"
                   className="block text-[#1b1b1e] text-base md:text-lg hover:text-[#0058bc] transition-colors mt-1.5 group-hover:translate-x-1 transition-transform"
                 >
-                  hello@curatorstudio.com
+                  arifpaturahman19@gmail.com
                 </a>
               </div>
 
@@ -146,32 +128,7 @@ const Contact = ({ id }) => {
               <div className="absolute -inset-8 bg-gradient-to-br from-[#0058bc]/5 via-[#c1c6d7]/5 to-[#efb15b]/5 rounded-3xl blur-2xl" />
 
               <div className="relative bg-white rounded-2xl shadow-[0_8px_50px_-12px_rgba(0,0,0,0.08)] border border-[#c1c6d7]/10 p-6 md:p-8 lg:p-10 overflow-hidden">
-                {/* Success Overlay */}
-                {isSuccess && (
-                  <div className="absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex flex-col items-center justify-center animate-fadeIn">
-                    <div className="success-animation">
-                      <div className="checkmark-circle">
-                        <div className="checkmark-stem" />
-                        <div className="checkmark-kick" />
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-['Playfair_Display'] text-[#1b1b1e] mt-4">
-                      Pesan Terkirim!
-                    </h3>
-                    <p className="text-[#5f5e5e] text-sm mt-2 text-center px-4">
-                      Terima kasih telah menghubungi saya. Saya akan membalas
-                      dalam waktu 24 jam.
-                    </p>
-                    <button
-                      onClick={() => setIsSuccess(false)}
-                      className="mt-6 px-6 py-2 bg-[#1b1b1e] text-white text-xs font-medium tracking-wider rounded-full hover:bg-[#333] transition-colors"
-                    >
-                      Kirim Pesan Lain
-                    </button>
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                <form onSubmit={(event) => event.preventDefault()} noValidate>
                   <div className="space-y-6 md:space-y-8">
                     <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                       {/* Nama */}
@@ -378,57 +335,29 @@ const Contact = ({ id }) => {
                       )}
                     </div>
 
-                    <div className="flex justify-end pt-2 md:pt-4">
+                    <div className="flex flex-col items-end gap-4 pt-2 md:pt-4">
+                      <p
+                        role="note"
+                        className="w-full rounded-lg bg-[#f0eef2] px-4 py-3 text-sm leading-relaxed text-[#5f5e5e]"
+                      >
+                        Fitur ini belum dapat digunakan. Silakan hubungi saya
+                        melalui email{" "}
+                        <a
+                          href="mailto:arifpaturahman19@gmail.com"
+                          className="font-medium text-[#0058bc] underline underline-offset-2 hover:text-[#1b1b1e]"
+                        >
+                          arifpaturahman19@gmail.com
+                        </a>
+                        .
+                      </p>
                       <button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="group relative inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-[#1b1b1e] rounded-full overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled
+                        className="inline-flex cursor-not-allowed items-center rounded-full bg-[#1b1b1e]/50 px-6 py-3 opacity-60 md:px-8 md:py-4"
                       >
                         <span className="relative z-10 text-[#fbf9fc] text-[10px] md:text-xs font-medium tracking-wider">
-                          {isSubmitting ? (
-                            <span className="flex items-center gap-2">
-                              <svg
-                                className="animate-spin h-4 w-4"
-                                viewBox="0 0 24 24"
-                              >
-                                <circle
-                                  className="opacity-25"
-                                  cx="12"
-                                  cy="12"
-                                  r="10"
-                                  stroke="currentColor"
-                                  strokeWidth="4"
-                                  fill="none"
-                                />
-                                <path
-                                  className="opacity-75"
-                                  fill="currentColor"
-                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                />
-                              </svg>
-                              Mengirim...
-                            </span>
-                          ) : (
-                            "Kirim Pesan"
-                          )}
+                          Pengiriman Belum Tersedia
                         </span>
-                        {!isSubmitting && (
-                          <span className="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                            <svg
-                              className="w-4 h-3"
-                              viewBox="0 0 16 12"
-                              fill="none"
-                            >
-                              <path
-                                d="M1 6H15M15 6L10 1M15 6L10 11"
-                                stroke="#fbf9fc"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                              />
-                            </svg>
-                          </span>
-                        )}
-                        <span className="absolute inset-0 bg-gradient-to-r from-[#0058bc] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </button>
                     </div>
                   </div>
