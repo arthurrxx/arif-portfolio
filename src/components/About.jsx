@@ -62,7 +62,7 @@ const About = ({ id }) => {
     >
       <div className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
         {/* Bagian Kiri - Judul */}
-        <div className="md:col-span-5 lg:col-span-4">
+        <div className="md:col-span-5 lg:col-span-5">
           <div
             ref={titleRef}
             className="sticky top-24 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -86,7 +86,7 @@ const About = ({ id }) => {
         </div>
 
         {/* Bagian Kanan - Foto & Deskripsi */}
-        <div className="md:col-span-7 lg:col-span-8">
+        <div className="md:col-span-7 lg:col-span-7">
           {/* Foto Profile */}
           <div
             ref={imageRef}

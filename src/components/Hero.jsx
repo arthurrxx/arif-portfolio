@@ -51,7 +51,7 @@ const Hero = ({ id }) => {
       aria-labelledby="hero-title"
     >
       <div className="w-full">
-        <div className="grid items-center gap-6 md:gap-8 lg:gap-12 lg:grid-cols-[1fr_0.9fr] xl:gap-16">
+        <div className="grid items-center gap-6 md:gap-8 min-[900px]:grid-cols-[1fr_0.9fr] lg:gap-12 xl:gap-16">
           <div className="max-w-4xl w-full" ref={titleRef}>
             {/* Figma Card */}
             <StyledCardWrapper className="max-w-full md:max-w-[614px]">
