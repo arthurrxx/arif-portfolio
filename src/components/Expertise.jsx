@@ -87,10 +87,11 @@ const Expertise = () => {
   return (
     <section
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20 border-t border-[#c1c6d7]/20 bg-[#f0eef2]"
+      className="w-full py-16 md:py-20 border-t border-[#c1c6d7]/20 bg-[#f0eef2]"
       aria-labelledby="expertise-heading"
     >
-      <div className="mb-8 md:mb-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-12">
+        <div className="mb-8 md:mb-12">
         <span className="text-[#5f5e5e] text-[10px] md:text-xs font-medium tracking-[2px] uppercase">
           Yang Saya Lakukan
         </span>
@@ -102,7 +103,7 @@ const Expertise = () => {
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
         {expertiseData.map((item, index) => (
           <div
             key={index}
@@ -120,6 +121,7 @@ const Expertise = () => {
             </p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );

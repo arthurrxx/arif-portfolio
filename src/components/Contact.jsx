@@ -76,10 +76,11 @@ const Contact = ({ id }) => {
     <section
       id={id}
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20 border-t border-[#c1c6d7]/10 bg-[#f0eef2]"
+      className="w-full py-16 md:py-20 border-t border-[#c1c6d7]/10 bg-[#f0eef2]"
       aria-labelledby="contact-heading"
     >
-      <div className="grid md:grid-cols-12 gap-16 lg:gap-24">
+      <div className="max-w-7xl mx-auto px-4 md:px-12">
+        <div className="grid md:grid-cols-12 gap-16 lg:gap-24">
         {/* Bagian Kiri - Info */}
         <div className="md:col-span-5">
           <div className="contact-animate opacity-0 translate-y-10 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
@@ -366,6 +367,7 @@ const Contact = ({ id }) => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

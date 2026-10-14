@@ -57,10 +57,11 @@ const About = ({ id }) => {
     <section
       id={id}
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20 border-t border-[#c1c6d7]/20 bg-[#f0eef2]"
+      className="w-full py-16 md:py-20 border-t border-[#c1c6d7]/20 bg-[#f0eef2]"
       aria-labelledby="about-heading"
     >
-      <div className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-12">
+        <div className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
         {/* Bagian Kiri - Judul */}
         <div className="md:col-span-5 lg:col-span-5">
           <div
@@ -123,6 +124,7 @@ const About = ({ id }) => {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

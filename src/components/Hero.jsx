@@ -47,10 +47,10 @@ const Hero = ({ id }) => {
     <section
       id={id}
       ref={heroRef}
-      className="min-h-screen flex items-center justify-center max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-16 opacity-0 translate-y-10 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden bg-white/70"
+      className="min-h-screen flex items-center justify-center w-full pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-16 opacity-0 translate-y-10 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden bg-white/70"
       aria-labelledby="hero-title"
     >
-      <div className="w-full">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="grid items-center gap-6 md:gap-8 min-[900px]:grid-cols-[1fr_0.9fr] lg:gap-12 xl:gap-16">
           <div className="max-w-4xl w-full" ref={titleRef}>
             {/* Figma Card */}
