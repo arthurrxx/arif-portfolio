@@ -1,4 +1,4 @@
-:HL["/arif-portfolio/_next/static/chunks/1grzr0bmaxrdm.css","style"]
+:HL["/arif-portfolio/_next/static/chunks/3wdu3zddywj4g.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"cVt_57U6iAtsgzpyPJqNQ","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"gFJfJi4n9DnbauM-2irEB","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
