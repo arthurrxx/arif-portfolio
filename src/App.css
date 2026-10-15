@@ -256,19 +256,21 @@ body {
 }
 
 .tech-track-left {
-    animation: techMarqueeLeft 38s linear infinite;
+    animation: techMarqueeLeft 30s linear infinite;
 }
 
 .tech-track-right {
-    animation: techMarqueeRight 38s linear infinite;
+    animation: techMarqueeRight 30s linear infinite;
 }
 
 .tech-track-group {
     display: flex;
     flex: none;
+    min-width: 100vw;
     align-items: center;
+    justify-content: space-around;
     gap: clamp(2.5rem, 6vw, 5rem);
-    padding-right: clamp(2.5rem, 6vw, 5rem);
+    padding-inline: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 .tech-item {
@@ -295,11 +297,6 @@ body {
     transition: filter 200ms ease, transform 200ms ease;
 }
 
-.tech-marquee:hover .tech-track,
-.tech-marquee:focus-within .tech-track {
-    animation-play-state: paused;
-}
-
 .tech-item:hover {
     color: var(--tech-hover-color);
     filter: brightness(1.15);
@@ -316,13 +313,13 @@ body {
       transform: translateX(0);
     }
     to {
-      transform: translateX(-50%);
+      transform: translateX(-25%);
     }
 }
 
 @keyframes techMarqueeRight {
     from {
-      transform: translateX(-50%);
+      transform: translateX(-25%);
     }
     to {
       transform: translateX(0);

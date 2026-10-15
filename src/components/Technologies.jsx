@@ -150,11 +150,11 @@ const TechMark = ({ type }) => {
 
 const TechnologyItems = ({ direction, includeLogos = false }) => (
   <div className={`tech-track ${direction}`}>
-    {[0, 1].map((copy) => (
+    {[0, 1, 2, 3].map((copy) => (
       <div
         key={copy}
         className="tech-track-group"
-        aria-hidden={copy === 1 ? "true" : undefined}
+        aria-hidden={copy > 0 ? "true" : undefined}
       >
         {technologies.map((technology) => (
           <span
