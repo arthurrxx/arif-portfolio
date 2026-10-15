@@ -3,13 +3,12 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import SelectedWorks from "./components/SelectedWorks";
+import Projects from "./components/Projects";
 import Expertise from "./components/Expertise";
-import Clients from "./components/Clients";
+import Technologies from "./components/Technologies";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
-import "./App.css";
 
 function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -44,23 +43,20 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (loading) {
-    return (
-      <div className="loading-screen">
-        <Loader />
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen">
+    <div id="root" className="min-h-screen">
+      {loading && (
+        <div className="loading-screen" role="status" aria-label="Memuat">
+          <Loader />
+        </div>
+      )}
       <Header activeSection={activeSection} />
       <main>
         <Hero id="hero" />
         <About id="about" />
-        <SelectedWorks id="work" />
+        <Projects id="work" />
         <Expertise />
-        <Clients />
+        <Technologies />
         <Contact id="contact" />
       </main>
       <Footer />

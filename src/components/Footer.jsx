@@ -1,6 +1,3 @@
-// src/components/Footer.jsx
-import RealTimeClockFooter from "./RealtimeClock";
-
 const Footer = () => {
   const socialLinks = [
     {
@@ -16,21 +13,16 @@ const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-[#a8a5b0]/30 bg-[#d5d2da]">
+    <footer className="border-t border-[#e5e7eb] bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Kiri - Logo */}
         <button
           onClick={scrollToTop}
-          className="font-['Playfair_Display'] text-xl md:text-2xl font-normal text-[#1b1b1e] hover:opacity-50 transition-opacity"
+          className="font-['Manrope'] text-xl md:text-2xl font-bold text-[#20242c] hover:text-[#667085] transition-colors"
           aria-label="Kembali ke atas"
         >
           PORTFOLIO
         </button>
-
-        {/* Tengah - RealTimeClock */}
-        <div className="flex items-center">
-          <RealTimeClockFooter />
-        </div>
 
         {/* Kanan - Social Links */}
         <nav
@@ -43,7 +35,7 @@ const Footer = () => {
               href={href}
               target="_blank"
               rel="noreferrer"
-              className="text-[#4a4a55] text-[10px] md:text-xs font-medium tracking-wider hover:text-[#1b1b1e] transition-colors"
+              className="text-[#667085] text-[10px] md:text-xs font-medium tracking-wider hover:text-[#20242c] transition-colors"
               aria-label={`Kunjungi ${name}`}
             >
               {name}
@@ -53,9 +45,9 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-[#a8a5b0]/30">
+      <div className="border-t border-[#e5e7eb]">
         <div className="max-w-7xl mx-auto px-4 md:px-12 py-3 md:py-4 flex justify-center">
-          <p className="text-[#4a4a55] text-[8px] md:text-[10px] font-medium tracking-wider">
+          <p className="text-[#667085] text-[8px] md:text-[10px] font-medium tracking-wider">
             © 2026 PORTFOLIO ARIF.
           </p>
         </div>

@@ -57,74 +57,72 @@ const About = ({ id }) => {
     <section
       id={id}
       ref={sectionRef}
-      className="w-full py-16 md:py-20 border-t border-[#c1c6d7]/20 bg-[#f0eef2]"
+      className="w-full border-t border-[#e5e7eb] bg-[#f5f5f5] py-14 sm:py-16 lg:py-24"
       aria-labelledby="about-heading"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-12">
-        <div className="grid md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
-        {/* Bagian Kiri - Judul */}
-        <div className="md:col-span-5 lg:col-span-5">
-          <div
-            ref={titleRef}
-            className="sticky top-24 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-          >
-            <span className="text-[#5f5e5e] text-xs font-medium tracking-[2px] uppercase inline-block">
-              Tentang Saya
-            </span>
-            <h2
-              id="about-heading"
-              className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight leading-[1.1] text-[#1b1b1e] mt-4"
+        <div className="grid items-start gap-8 md:grid-cols-2 md:gap-10 lg:gap-16">
+          <div className="md:pt-8 lg:pt-12">
+            <div
+              ref={titleRef}
+              className="transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
-              Lulusan SMK
-              <br />
-              jurusan RPL
-              <br />
-              dari Sukabumi.
-            </h2>
-
-            <div className="w-12 h-0.5 bg-[#1b1b1e] mt-6 md:mt-8 transition-all duration-1000 delay-500" />
-          </div>
-        </div>
-
-        {/* Bagian Kanan - Foto & Deskripsi */}
-        <div className="md:col-span-7 lg:col-span-7">
-          {/* Foto Profile */}
-          <div
-            ref={imageRef}
-            className="relative mb-8 md:mb-10 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-          >
-            <div className="absolute -inset-4 bg-gradient-to-br from-[#1b1b1e]/5 via-[#c1c6d7]/5 to-transparent rounded-3xl blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl bg-[#f5f3f6] border border-[#c1c6d7]/20">
-              <img
-                src={aboutPhoto}
-                alt="Arif Faturahman - Junior Developer"
-                className="w-full h-auto max-h-[400px] md:max-h-[500px] object-cover aspect-[4/3] md:aspect-[16/10]"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-[#1b1b1e]/90 to-transparent">
-                <p className="text-white/90 text-xs md:text-sm font-medium tracking-wider">
-                  ARIF FATURAHMAN ALHAKIM JAENUDIN
-                </p>
-              </div>
+              <span className="inline-block text-xs font-medium uppercase tracking-[2px] text-[#667085]">
+                Tentang Saya
+              </span>
+              <h2
+                id="about-heading"
+                className="mt-3 font-['Manrope'] text-4xl font-bold leading-[1.08] tracking-tight text-[#20242c] sm:text-5xl md:text-[2.75rem] lg:mt-4 lg:text-6xl"
+              >
+                Lulusan SMK
+                <br />
+                jurusan RPL
+                <br />
+                dari Sukabumi.
+              </h2>
+              <div className="mt-5 h-0.5 w-12 bg-[#20242c] transition-all duration-1000 delay-500 md:mt-7" />
             </div>
           </div>
 
-          {/* Deskripsi */}
-          <div ref={descRef} className="space-y-4 md:space-y-6">
-            <p className="text-[#414755] text-base md:text-lg lg:text-xl leading-relaxed tracking-tight">
-              Saya Arif Faturahman Alhakim Jaenudin, lulusan Rekayasa Perangkat
-              Lunak dari SMK Mardi Yuana Cikembar. Saya berfokus pada web
-              development dan tertarik membangun situs yang fungsional,
-              terstruktur, serta mudah digunakan.
-            </p>
-            <p className="text-[#414755] text-base md:text-lg lg:text-xl leading-relaxed tracking-tight">
-              Saya juga mempelajari dasar-dasar cybersecurity untuk memahami
-              cara menjaga keamanan aplikasi web. Saya terus mengembangkan
-              keterampilan agar dapat menghadirkan pengalaman digital yang
-              modern dan aman.
-            </p>
+          <div>
+            <div
+              ref={imageRef}
+              className="relative mb-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:mb-8 lg:mb-9"
+            >
+              <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#20242c]/[0.03] via-[#e5e7eb]/40 to-transparent blur-2xl sm:-inset-4" />
+              <div className="relative overflow-hidden rounded-xl border border-[#e5e7eb] bg-white sm:rounded-2xl">
+                <img
+                  src={aboutPhoto.src}
+                  alt="Arif Faturahman - Junior Developer"
+                  className="aspect-[4/3] max-h-[400px] w-full object-cover md:aspect-[16/10] md:max-h-[430px]"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#20242c]/90 to-transparent p-3 sm:p-5">
+                  <p className="text-[10px] font-medium tracking-wider text-white/90 sm:text-xs md:text-sm">
+                    ARIF FATURAHMAN ALHAKIM JAENUDIN
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              ref={descRef}
+              className="max-w-2xl space-y-4 md:space-y-5"
+            >
+              <p className="text-base leading-relaxed tracking-tight text-[#475467] md:text-[0.95rem] lg:text-lg">
+                Saya Arif Faturahman Alhakim Jaenudin, lulusan Rekayasa
+                Perangkat Lunak dari SMK Mardi Yuana Cikembar. Saya berfokus
+                pada web development dan tertarik membangun situs yang
+                fungsional, terstruktur, serta mudah digunakan.
+              </p>
+              <p className="text-base leading-relaxed tracking-tight text-[#475467] md:text-[0.95rem] lg:text-lg">
+                Saya juga mempelajari dasar-dasar cybersecurity untuk memahami
+                cara menjaga keamanan aplikasi web. Saya terus mengembangkan
+                keterampilan agar dapat menghadirkan pengalaman digital yang
+                modern dan aman.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );

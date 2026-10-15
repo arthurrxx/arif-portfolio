@@ -1,4 +1,4 @@
-// src/components/Loader.jsx
+// Loading screen animation
 import styled from "styled-components";
 
 const Loader = () => {
@@ -78,18 +78,18 @@ const StyledWrapper = styled.div`
   }
 
   .track {
-    stroke: #d0d0d0;
+    stroke: #e5e7eb;
   }
 
   .car {
-    stroke: #1b1b1e;
+    stroke: #667085;
     stroke-linecap: round;
     stroke-dasharray: 25 75;
     animation: borderMove 2s linear infinite;
   }
 
   .keys rect {
-    fill: #1b1b1e;
+    fill: #20242c;
     animation: typing 1.2s infinite;
   }
 
@@ -124,7 +124,6 @@ const StyledWrapper = styled.div`
     }
   }
 
-  /* Responsive */
   @media (max-width: 640px) {
     .container {
       width: 60px;

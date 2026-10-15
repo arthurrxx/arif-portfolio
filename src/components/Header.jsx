@@ -1,22 +1,33 @@
 // src/components/Header.jsx
-import { useState, useEffect } from "react";
-import logo from "../assets/logo.svg";
+import { useState, useEffect, useRef } from "react";
 
 const Header = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      if (currentScrollY <= 20) {
+        setIsHeaderHidden(false);
+      } else if (Math.abs(currentScrollY - lastScrollYRef.current) > 8) {
+        setIsHeaderHidden(
+          currentScrollY > lastScrollYRef.current && currentScrollY > 100,
+        );
+      }
+
+      lastScrollYRef.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Update indicator position when activeSection changes
   useEffect(() => {
     const updateIndicator = () => {
       const activeItem = document.querySelector(
@@ -58,37 +69,35 @@ const Header = ({ activeSection }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
-        isScrolled
-          ? "bg-[#faf8fa]/95 backdrop-blur-xl shadow-[0_6px_20px_-10px_rgba(0,0,0,0.12)] border-b border-[#c1c6d7]/20"
-          : "bg-[#faf8fa]/90 backdrop-blur-xl border-b border-[#c1c6d7]/20"
-      }`}
+      className={`site-header fixed top-0 left-0 z-50 w-full ${
+        isScrolled ? "site-header-scrolled" : ""
+      } ${isHeaderHidden && !isMenuOpen ? "site-header-hidden" : ""}`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-14 md:h-20 px-4 md:px-12">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-14 md:h-16 px-4 md:px-8">
         {/* Logo */}
         <button
           onClick={() => scrollToSection("hero")}
-          className="flex items-center gap-2 md:gap-3 text-[#1b1b1e] hover:opacity-60 transition-opacity flex-shrink-0 group"
+          className="portfolio-brand flex items-center gap-2 md:gap-3 text-[#20242c] flex-shrink-0"
           aria-label="Beranda"
         >
           <img
-            src={logo}
+            src="logo.svg"
             alt="Logo"
-            className="w-8 h-8 md:w-12 md:h-12 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-5deg]"
+            className="w-8 h-8 md:w-10 md:h-10 object-contain"
           />
-          <span className="font-['Playfair_Display'] text-base md:text-2xl tracking-tight transition-all duration-300 group-hover:tracking-wider">
+          <span className="portfolio-wordmark font-['Manrope'] font-bold text-base md:text-xl tracking-tight">
             PORTFOLIO
           </span>
         </button>
 
         {/* Navigasi Desktop dengan Animasi Underline */}
         <nav
-          className="hidden md:flex items-center gap-10 relative"
+          className="nav-links hidden md:flex items-center gap-7 relative"
           aria-label="Primary navigation"
         >
-          {/* Animated Underline Indicator */}
           <span
-            className="absolute -bottom-1 h-[2px] bg-[#1b1b1e] rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            aria-hidden="true"
+            className="nav-indicator absolute -bottom-2 h-[3px] rounded-full"
             style={{
               left: `${indicatorStyle.left}px`,
               width: `${indicatorStyle.width}px`,
@@ -100,16 +109,14 @@ const Header = ({ activeSection }) => {
               key={item.id}
               data-nav={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`relative py-1 text-sm font-medium tracking-wider transition-all duration-300 ${
+              className={`relative py-1 text-sm font-medium tracking-wider transition-colors duration-300 ${
                 activeSection === item.id
-                  ? "text-[#1b1b1e]"
-                  : "text-[#5f5e5e] hover:text-[#1b1b1e]"
+                  ? "text-[#20242c]"
+                    : "text-[#667085] hover:text-[#20242c]"
               }`}
               aria-current={activeSection === item.id ? "page" : undefined}
             >
-              <span className="relative inline-block transition-all duration-300 hover:translate-y-[-2px]">
-                {item.label}
-              </span>
+              {item.label}
             </button>
           ))}
         </nav>
@@ -117,34 +124,36 @@ const Header = ({ activeSection }) => {
         {/* Tombol Hubungi Saya */}
         <button
           onClick={() => scrollToSection("contact")}
-          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-[#1b1b1e] rounded-full hover:bg-[#333] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex-shrink-0 group relative overflow-hidden"
+          className="nav-cta-button hidden md:inline-flex"
           aria-label="Hubungi saya"
         >
-          <span className="relative z-10 text-[#faf8fa] text-xs font-medium tracking-wider transition-all duration-300 group-hover:tracking-[0.15em]">
-            Hubungi Saya
+          <span className="nav-cta-shadow" aria-hidden="true" />
+          <span className="nav-cta-edge" aria-hidden="true" />
+          <span className="nav-cta-front">
+            Diskusi proyek
           </span>
-          <span className="absolute inset-0 bg-gradient-to-r from-[#0058bc] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </button>
 
         {/* Tombol Menu Mobile */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden flex flex-col gap-1.5 p-2 hover:opacity-60 transition-opacity flex-shrink-0 group"
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? "Tutup menu" : "Buka menu"}
           aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
         >
           <span
-            className={`w-5 h-0.5 bg-[#1b1b1e] rounded-full transition-all duration-300 ${
+            className={`menu-line w-5 h-0.5 bg-[#20242c] rounded-full transition-all duration-300 ${
               isMenuOpen ? "rotate-45 translate-y-2" : ""
             } group-hover:w-6`}
           />
           <span
-            className={`w-5 h-0.5 bg-[#1b1b1e] rounded-full transition-all duration-300 ${
-              isMenuOpen ? "opacity-0" : ""
+            className={`menu-line w-5 h-0.5 bg-[#20242c] rounded-full transition-all duration-300 ${
+              isMenuOpen ? "scale-x-0 opacity-0" : ""
             } group-hover:w-4`}
           />
           <span
-            className={`w-5 h-0.5 bg-[#1b1b1e] rounded-full transition-all duration-300 ${
+            className={`menu-line w-5 h-0.5 bg-[#20242c] rounded-full transition-all duration-300 ${
               isMenuOpen ? "-rotate-45 -translate-y-2" : ""
             } group-hover:w-6`}
           />
@@ -153,23 +162,25 @@ const Header = ({ activeSection }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          isMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        id="mobile-navigation"
+        inert={!isMenuOpen}
+        className={`mobile-menu md:hidden overflow-hidden ${
+          isMenuOpen ? "mobile-menu-open" : ""
         }`}
       >
-        <div className="px-4 pb-6 pt-2 border-t border-[#c1c6d7]/10 bg-[#faf8fa]/95 backdrop-blur-xl">
+        <div className="px-4 pb-6 pt-2 border-t border-[#e5e7eb] bg-white/95 backdrop-blur-xl">
           <nav className="flex flex-col gap-3" aria-label="Mobile navigation">
             {navItems.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-left text-base font-medium tracking-wider transition-all duration-300 py-2 ${
+                className={`mobile-nav-link text-left text-base font-medium tracking-wider transition-colors duration-300 py-2 ${
                   activeSection === item.id
-                    ? "text-[#1b1b1e]"
-                    : "text-[#5f5e5e] hover:text-[#1b1b1e] hover:translate-x-2"
+                    ? "text-[#20242c]"
+                      : "text-[#667085] hover:text-[#20242c]"
                 }`}
                 style={{
-                  transitionDelay: `${index * 40}ms`,
+                  "--menu-item-index": index,
                 }}
               >
                 {item.label}
@@ -177,9 +188,13 @@ const Header = ({ activeSection }) => {
             ))}
             <button
               onClick={() => scrollToSection("contact")}
-              className="mt-2 w-full text-center px-6 py-3 bg-[#1b1b1e] rounded-full text-[#faf8fa] text-sm font-medium tracking-wider hover:bg-[#333] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="nav-cta-button nav-mobile-cta mt-2"
             >
-              Hubungi Saya
+              <span className="nav-cta-shadow" aria-hidden="true" />
+              <span className="nav-cta-edge" aria-hidden="true" />
+              <span className="nav-cta-front">
+                Diskusi proyek
+              </span>
             </button>
           </nav>
         </div>

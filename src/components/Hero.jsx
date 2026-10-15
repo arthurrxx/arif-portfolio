@@ -1,12 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useScrollReveal } from "scroll-magic-lite/react";
-import profilePhoto from "../assets/profile1.webp";
 import NotFoundPage from "./NotFoundPage";
+
+const HACK_SEQUENCE = [
+  "[*] Initializing session...",
+  "[+] Session established",
+  "[*] Enumerating portfolio routes...",
+  "[+] 07 routes mapped",
+  "[*] Resolving asset manifest...",
+  "[+] 24 assets indexed",
+  "[*] Parsing interface modules...",
+  "[+] 03 modules loaded",
+  "[*] Running local diagnostics...",
+  "[+] Diagnostics complete",
+  "arif@portfolio:~$ _",
+];
 
 const Hero = ({ id }) => {
   const heroRef = useRef(null);
+  const hackTimerRef = useRef(null);
+  const hackSequenceRef = useRef(null);
   const [isCVUnavailable, setIsCVUnavailable] = useState(false);
+  const [terminalCommand, setTerminalCommand] = useState("");
+  const [isHackSimulationActive, setIsHackSimulationActive] = useState(false);
+  const [hackSimulationRun, setHackSimulationRun] = useState(0);
+  const [hackSequenceStep, setHackSequenceStep] = useState(0);
 
   const titleRef = useScrollReveal({
     animation: "fadeUp",
@@ -42,6 +61,35 @@ const Hero = ({ id }) => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(
+    () => () => {
+      window.clearTimeout(hackTimerRef.current);
+      window.clearInterval(hackSequenceRef.current);
+    },
+    [],
+  );
+
+  const handleTerminalSubmit = (event) => {
+    event.preventDefault();
+    if (terminalCommand.trim().toLowerCase() !== "hack") return;
+
+    window.clearTimeout(hackTimerRef.current);
+    window.clearInterval(hackSequenceRef.current);
+    setHackSimulationRun((run) => run + 1);
+    setHackSequenceStep(0);
+    setIsHackSimulationActive(true);
+    setTerminalCommand("");
+    hackSequenceRef.current = window.setInterval(() => {
+      setHackSequenceStep((step) =>
+        Math.min(step + 1, HACK_SEQUENCE.length),
+      );
+    }, 950);
+    hackTimerRef.current = window.setTimeout(() => {
+      window.clearInterval(hackSequenceRef.current);
+      setIsHackSimulationActive(false);
+    }, 12500);
+  };
+
   return (
     <>
     <section
@@ -69,10 +117,10 @@ const Hero = ({ id }) => {
                       y="105"
                       textAnchor="start"
                       dominantBaseline="middle"
-                      fontFamily="Playfair Display, serif"
-                      fontSize="95"
-                      fontWeight="500"
-                      fill="#1b1b1e"
+                      fontFamily="Manrope, sans-serif"
+                      fontSize="82"
+                      fontWeight="700"
+                      fill="#20242C"
                       letterSpacing="-2.5"
                     >
                       Junior
@@ -82,10 +130,10 @@ const Hero = ({ id }) => {
                       y="185"
                       textAnchor="start"
                       dominantBaseline="middle"
-                      fontFamily="Playfair Display, serif"
-                      fontSize="100"
-                      fontWeight="500"
-                      fill="#1b1b1e"
+                      fontFamily="Manrope, sans-serif"
+                      fontSize="86"
+                      fontWeight="700"
+                      fill="#20242C"
                       letterSpacing="-2.5"
                     >
                       Developer
@@ -95,10 +143,10 @@ const Hero = ({ id }) => {
                       y="235"
                       textAnchor="start"
                       dominantBaseline="middle"
-                      fontFamily="Playfair Display, serif"
-                      fontSize="48"
+                      fontFamily="Manrope, sans-serif"
+                      fontSize="40"
                       fontWeight="400"
-                      fill="#5f5e5e"
+                      fill="#667085"
                       letterSpacing="-1.5"
                     >
                       Portfolio
@@ -107,36 +155,36 @@ const Hero = ({ id }) => {
                     <g id="box">
                       <path
                         strokeWidth={2}
-                        stroke="#2563EB"
+                        stroke="#20242C"
                         fillOpacity="0.05"
-                        fill="#2563EB"
+                        fill="#20242C"
                         d="M587 20H28V306H587V20Z"
                         id="figny9-box"
                       />
                       <path
                         strokeWidth={2}
-                        stroke="#2563EB"
+                        stroke="#20242C"
                         fill="white"
                         d="M33 15H23V25H33V15Z"
                         id="figny9-adjust-1"
                       />
                       <path
                         strokeWidth={2}
-                        stroke="#2563EB"
+                        stroke="#20242C"
                         fill="white"
                         d="M33 301H23V311H33V301Z"
                         id="figny9-adjust-3"
                       />
                       <path
                         strokeWidth={2}
-                        stroke="#2563EB"
+                        stroke="#20242C"
                         fill="white"
                         d="M592 301H582V311H592V301Z"
                         id="figny9-adjust-4"
                       />
                       <path
                         strokeWidth={2}
-                        stroke="#2563EB"
+                        stroke="#20242C"
                         fill="white"
                         d="M592 15H582V25H592V15Z"
                         id="figny9-adjust-2"
@@ -147,12 +195,12 @@ const Hero = ({ id }) => {
                       <path
                         strokeWidth={2}
                         stroke="white"
-                        fill="#2563EB"
+                        fill="#20242C"
                         d="M453.383 343L448 317L471 331L459.745 333.5L453.383 343Z"
                         id="Vector 273"
                       />
                       <path
-                        fill="#2563EB"
+                        fill="#20242C"
                         d="M535 343H469.932V376H535V343Z"
                         id="Rectangle 786"
                       />
@@ -161,7 +209,7 @@ const Hero = ({ id }) => {
                         y="359.5"
                         textAnchor="middle"
                         dominantBaseline="middle"
-                        fontFamily="Inter, sans-serif"
+                        fontFamily="Manrope, sans-serif"
                         fontSize="10"
                         fontWeight="700"
                         fill="white"
@@ -253,31 +301,95 @@ const Hero = ({ id }) => {
             </div>
           </div>
 
-          {/* ===== PROFILE CARD - MAC OS STYLE (FULL FOTO) ===== */}
+          {/* Terminal profile card */}
           <div className="relative w-full">
-            <StyledProfileCard>
-              <div className="card">
-                <div className="tools">
-                  <div className="circle">
-                    <span className="red box" />
+            <StyledTerminalCard>
+              <div
+                className={`terminal ${isHackSimulationActive ? "terminal-hack-mode" : ""}`}
+              >
+                <div className="terminal-toolbar">
+                  <div className="terminal-controls" aria-hidden="true">
+                    <span className="terminal-control close" />
+                    <span className="terminal-control minimize" />
+                    <span className="terminal-control maximize" />
                   </div>
-                  <div className="circle">
-                    <span className="yellow box" />
-                  </div>
-                  <div className="circle">
-                    <span className="green box" />
-                  </div>
+                  <p className="terminal-title">arif@portfolio: ~</p>
+                  <span className="terminal-tab" aria-hidden="true">
+                    +
+                  </span>
                 </div>
-                <div className="card__content">
-                  <img
-                    src={profilePhoto}
-                    alt="Profile"
-                    className="profile-image"
-                  />
-                  <div className="badge">Junior Developer</div>
+                <div className="terminal-body">
+                  <div className="terminal-line">
+                    <span className="terminal-user">arif@portfolio</span>
+                    <span className="terminal-path">:~</span>
+                    <span className="terminal-prompt">$</span>
+                    <span className="terminal-command">whoami</span>
+                  </div>
+                  <p className="terminal-output">
+                    Arif Faturahman Alhakim Jaenudin
+                  </p>
+
+                  <div className="terminal-line">
+                    <span className="terminal-user">arif@portfolio</span>
+                    <span className="terminal-path">:~</span>
+                    <span className="terminal-prompt">$</span>
+                    <span className="terminal-command">location</span>
+                  </div>
+                  <p className="terminal-output">Sukabumi, Jawa Barat</p>
+
+                  <form
+                    className="terminal-line terminal-ready terminal-command-form"
+                    onSubmit={handleTerminalSubmit}
+                  >
+                    <span className="terminal-user">arif@portfolio</span>
+                    <span className="terminal-path">:~</span>
+                    <span className="terminal-prompt">$</span>
+                    <input
+                      className="terminal-input"
+                      type="text"
+                      value={terminalCommand}
+                      onChange={(event) => setTerminalCommand(event.target.value)}
+                      aria-label="Terminal command"
+                      autoComplete="off"
+                      autoCapitalize="none"
+                      spellCheck="false"
+                    />
+                  </form>
                 </div>
+                {isHackSimulationActive && (
+                  <div
+                    key={hackSimulationRun}
+                    className="terminal-hack-overlay"
+                  >
+                    <div
+                      className="hack-code"
+                      role="log"
+                      aria-label="Terminal output"
+                      aria-live="polite"
+                      aria-relevant="additions text"
+                    >
+                      <span className="hack-command">
+                        <span>arif@portfolio</span>:~$ hack
+                      </span>
+                      {HACK_SEQUENCE.slice(0, hackSequenceStep).map(
+                        (line, index) => (
+                          <span
+                            className={
+                              index === HACK_SEQUENCE.length - 1
+                                ? "hack-final-line"
+                                : undefined
+                            }
+                            key={`${hackSimulationRun}-${line}`}
+                          >
+                            {line}
+                          </span>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
-            </StyledProfileCard>
+            </StyledTerminalCard>
           </div>
         </div>
       </div>
@@ -352,119 +464,286 @@ const StyledCardWrapper = styled.div`
   }
 `;
 
-// ===== STYLED PROFILE CARD - MAC OS STYLE (FULL FOTO) =====
-const StyledProfileCard = styled.div`
+const StyledTerminalCard = styled.div`
   width: 100%;
-  max-width: 380px;
+  max-width: 520px;
   margin: 0 auto;
 
-  .card {
-    width: min(100%, 380px);
-    height: 480px;
-    margin: 0 auto;
-    background: #f5f7fa;
-    border-radius: 14px;
-    z-index: 1;
-    overflow: hidden;
-    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .tools {
-    display: flex;
-    align-items: center;
-    padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    gap: 8px;
+  .terminal {
     position: relative;
-    z-index: 2;
+    width: 100%;
+    min-height: 400px;
+    overflow: hidden;
+    border: 1px solid #34383f;
+    border-radius: 16px;
+    background: #20242c;
+    box-shadow: 0 24px 60px -28px rgba(32, 36, 44, 0.45);
   }
 
-  .circle {
-    padding: 0 2px;
+  .terminal-toolbar {
+    display: flex;
+    height: 52px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: #292d35;
+  }
+
+  .terminal-controls {
     display: flex;
     align-items: center;
+    gap: 7px;
   }
 
-  .box {
-    display: inline-block;
-    width: 13px;
-    height: 13px;
+  .terminal-control {
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
   }
 
-  .red {
-    background: #ff5f57;
+  .close {
+    background: #ff5f56;
   }
 
-  .yellow {
+  .minimize {
     background: #ffbd2e;
   }
 
-  .green {
-    background: #28c840;
+  .maximize {
+    background: #27c93f;
   }
 
-  .card__content {
-    position: relative;
-    width: 100%;
-    height: calc(100% - 48px);
-    overflow: hidden;
-    background: #f0f2f5;
-  }
-
-  .profile-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-  }
-
-  .badge {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    padding: 8px 20px;
-    border-radius: 50px;
-    color: white;
-    font-size: 10px;
+  .terminal-title {
+    color: #d1d5db;
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .terminal-tab {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: #373c45;
+    color: #d1d5db;
+    font-family: "Manrope", sans-serif;
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  .terminal-body {
+    min-height: 347px;
+    padding: 28px 30px 30px;
+    color: #e5e7eb;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .terminal-line {
+    display: flex;
+    min-width: 0;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0 6px;
+    margin-bottom: 3px;
+  }
+
+  .terminal-user {
+    color: #7dd3a7;
+  }
+
+  .terminal-path {
+    color: #cbd5e1;
+  }
+
+  .terminal-prompt {
+    color: #f3c969;
+  }
+
+  .terminal-command {
+    color: #f3f4f6;
+  }
+
+  .terminal-output {
+    margin: 0 0 17px 18px;
+    color: #cbd5e1;
+    overflow-wrap: anywhere;
+  }
+
+  .terminal-value {
+    color: #93c5fd;
+  }
+
+  .terminal-ready {
+    margin-top: 20px;
+  }
+
+  .terminal-command-form {
+    width: 100%;
+  }
+
+  .terminal-input {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #f3f4f6;
+    font: inherit;
+    caret-color: #7dd3a7;
+  }
+
+  .terminal-input::placeholder {
+    color: #7b8491;
+    opacity: 1;
+  }
+
+  .terminal-hack-overlay {
+    position: absolute;
+    z-index: 3;
+    inset: 52px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 28px 30px;
+    overflow: hidden;
+    border-radius: 0 0 15px 15px;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(125, 211, 167, 0.025) 0,
+        rgba(125, 211, 167, 0.025) 1px,
+        transparent 1px,
+        transparent 5px
+      ),
+      #171b1f;
+    color: #cbd5e1;
+    animation: hackOverlayIn 280ms ease-out both;
+  }
+
+  .hack-code {
+    display: grid;
+    gap: 9px;
+    color: #a9cdb7;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .hack-code span {
+    overflow: hidden;
     white-space: nowrap;
-    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: hackLineIn 350ms steps(35, end) both;
+  }
+
+  .hack-command {
+    color: #f3f4f6;
+  }
+
+  .hack-command span {
+    color: #7dd3a7;
+  }
+
+  .hack-final-line {
+    color: #f3f4f6;
+    animation: terminalBlink 1s step-end infinite;
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #e5e7eb;
+    animation: terminalBlink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes terminalBlink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes hackOverlayIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hackLineIn {
+    from {
+      max-width: 0;
+      opacity: 0.4;
+    }
+    to {
+      max-width: 100%;
+      opacity: 1;
+    }
   }
 
   @media (max-width: 640px) {
-    .card {
-      height: 400px;
+    .terminal {
+      min-height: 360px;
       border-radius: 12px;
     }
-    .tools {
-      padding: 10px 14px;
+
+    .terminal-toolbar {
+      height: 46px;
+      padding: 0 14px;
     }
-    .box {
-      width: 11px;
-      height: 11px;
+
+    .terminal-body {
+      min-height: 313px;
+      padding: 22px 17px 24px;
+      font-size: 11px;
     }
-    .badge {
-      font-size: 8px;
-      padding: 6px 14px;
-      bottom: 16px;
-      letter-spacing: 1.5px;
+
+    .terminal-title {
+      font-size: 10px;
+    }
+
+    .terminal-control {
+      width: 9px;
+      height: 9px;
+    }
+
+    .terminal-output {
+      margin-left: 12px;
+    }
+
+    .terminal-hack-overlay {
+      inset: 46px 0 0;
+      padding: 22px 17px;
+      border-radius: 0 0 11px 11px;
+    }
+
+    .hack-code {
+      gap: 8px;
+      font-size: 10px;
     }
   }
 
-  @media (min-width: 641px) and (max-width: 1024px) {
-    .card {
-      height: 440px;
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+      animation: none;
+    }
+
+    .terminal-hack-overlay,
+    .hack-code span,
+    .hack-final-line {
+      animation: none;
+      opacity: 1;
+      max-width: 100%;
+      transform: none;
     }
   }
 `;
@@ -520,11 +799,11 @@ const StyledButton3D = styled.div`
     font-size: 1rem;
     font-weight: 500;
     color: white;
-    background: #1b1b1e;
+    background: #2563eb;
     will-change: transform;
     transform: translateY(-4px);
     transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
-    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-family: "Manrope", sans-serif;
     letter-spacing: 0.5px;
   }
 
@@ -596,12 +875,12 @@ const SocialWrapper = styled.div`
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     border: 1px solid #e8e6ea;
-    color: #4f4f4f;
+    color: #475467;
     text-decoration: none;
   }
 
   .wrapper .icon:focus-visible {
-    outline: 3px solid #0058bc;
+    outline: 3px solid #20242c;
     outline-offset: 3px;
   }
 
@@ -617,7 +896,7 @@ const SocialWrapper = styled.div`
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    font-family: "Manrope", sans-serif;
     font-weight: 500;
   }
 
