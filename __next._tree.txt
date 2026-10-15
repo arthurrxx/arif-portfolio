@@ -1,3 +1,3 @@
 :HL["/arif-portfolio/_next/static/chunks/1grzr0bmaxrdm.css","style"]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"WyzZXDp-ncjKNLoHTaZtq","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"YyRFeHk3cpwuQl3abAn_0","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
