@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,60050,o=>{o.q("/arif-portfolio/_next/static/media/profile2.3_2l0ff8vd1-m.webp")}]);
